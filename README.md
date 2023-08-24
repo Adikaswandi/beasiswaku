@@ -9,6 +9,7 @@ Ini adalah proyek pendaftaran beasiswa yang menggunakan PHP dan Bootstrap. Proye
 - `tambah.php`: Halaman formulir pendaftaran (Daftar)
 - `hasil.php`: Halaman hasil pendaftaran (Hasil)
 - `koneksi.php`: Berkas untuk menghubungkan ke database MySQL
+- `functions.php`: Berkas untuk yang berisi function
 - `README.md`: Berkas penjelasan mengenai struktur dan sumber daya pemrograman
 
 ### Penjelasan Berkas:
@@ -20,6 +21,10 @@ Ini adalah proyek pendaftaran beasiswa yang menggunakan PHP dan Bootstrap. Proye
 3. `hasil.php`: Halaman hasil pendaftaran. Data pendaftar dari database ditampilkan di sini, termasuk status ajuan. Halaman ini memberikan gambaran umum tentang pendaftar dan statusnya.
 
 4. `koneksi.php`: Berkas untuk menghubungkan ke database MySQL. Variabel host, username, password, dan database digunakan untuk mengakses server database. Jika koneksi gagal, pesan kesalahan akan ditampilkan.
+
+5. `functions.php`: Berkas yang berisi definisi fungsi PHP yang dapat digunakan dalam aplikasi pendaftaran beasiswa. Fungsi ini digunakan untuk mengecek nilai IPK dan mengontrol status pengisian formulir berdasarkan nilai IPK yang diberikan.
+
+
 
 
 ### Sumber Daya Pemrograman:
