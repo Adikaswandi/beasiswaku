@@ -1,11 +1,3 @@
-<?php
-    include 'koneksi.php';
-
-    $query = "SELECT * FROM pendaftar;";
-
-    $sql = mysqli_query($conn, $query);
-?>
-
 <!doctype html>
 <html lang="en">
   <head>
