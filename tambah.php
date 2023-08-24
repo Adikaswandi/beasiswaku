@@ -1,15 +1,17 @@
 <?php
 
-$ipk = 3; // asumsi ipk dapat dari sistem
+include 'functions.php';
 
-//fungsi validasi ipk
-function isDisabled($ipk) {
-    if ($ipk < 3) {
-        return true;
-    } else {
-        return false;
-    }
-}
+$ipk = 3.5; // asumsi ipk dapat dari sistem
+
+// //fungsi validasi ipk
+// function isDisabled($ipk) {
+//     if ($ipk < 3) {
+//         return true;
+//     } else {
+//         return false;
+//     }
+// }
 
 //mendisablekan input
 if (isDisabled($ipk)) {
