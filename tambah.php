@@ -2,7 +2,7 @@
 
 include 'functions.php';
 
-$ipk = 3.4; // asumsi ipk dapat dari sistem
+$ipk = 3.2; // asumsi ipk dapat dari sistem
 
 // //fungsi validasi ipk
 // function isDisabled($ipk) {
