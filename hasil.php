@@ -68,7 +68,6 @@
                 <th>IPK</th>
                 <th>Beasiswa</th>
                 <th>Statuh ajuan</th>
-                <th>Berkas</th>
             </thead>
             <tbody>
                 <?php
@@ -84,7 +83,6 @@
                     <td><?= $result['ipk']; ?></td>
                     <td><?= $result['beasiswa']; ?></td>
                     <td><?= $result['status_ajuan']; ?></td>                    
-                    <td><?= $result['berkas']; ?></td>                    
                 </tr>
                 <?php
                     }

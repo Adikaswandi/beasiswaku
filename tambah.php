@@ -2,7 +2,7 @@
 
 include 'functions.php';
 
-$ipk = 3.5; // asumsi ipk dapat dari sistem
+$ipk = 3.4; // asumsi ipk dapat dari sistem
 
 // //fungsi validasi ipk
 // function isDisabled($ipk) {
@@ -80,7 +80,7 @@ if (isDisabled($ipk)) {
         </div>
         <div class="row justify-content-center">
             <div class="col-8 border p-5">
-                <form action="proses.php" method="post">    
+                <form action="proses.php" method="post" enctype="multipart/form-data">    
                     <div class="mb-3 row">
                         <label for="nama" class="col-sm-2 col-form-label">Nama</label>
                         <div class="col-sm-10">
