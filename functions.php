@@ -1,13 +1,14 @@
 <?php
 
-//fungsi validasi ipk
-function isDisabled($ipk) {
-    if ($ipk < 3) {
-        return true;
-    } else {
-        return false;
+// fungsi disable ipk
+function setDisable($ipk){
+    $result = "";
+    if ($ipk < 3){
+        $result = "disabled";
     }
+    return $result;
 }
+
 
 //fungsi upload file
 function uploadFile($file) {

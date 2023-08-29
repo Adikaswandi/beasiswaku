@@ -2,25 +2,6 @@
 
 include 'functions.php';
 
-$ipk = 3.2; // asumsi ipk dapat dari sistem
-
-// //fungsi validasi ipk
-// function isDisabled($ipk) {
-//     if ($ipk < 3) {
-//         return true;
-//     } else {
-//         return false;
-//     }
-// }
-
-//mendisablekan input
-if (isDisabled($ipk)) {
-    // Jika isDisabled mengembalikan true, maka nonaktifkan inputan lain
-    $disableInputs = "disabled";
-} else {
-    // Jika isDisabled mengembalikan false, maka tidak perlu menonaktifkan inputan lain
-    $disableInputs = "";
-}
 
 ?>
 
@@ -114,37 +95,62 @@ if (isDisabled($ipk)) {
                         </select>
                         </div>
                     </div>
+
+                    <?php
+                        $ipk = '';
+                    ?>
+
                     <div class="mb-3 row">
                         <label for="ipk" class="col-sm-2 col-form-label">IPK</label>
                         <div class="col-sm-10">
-                            <input type="number" class="form-control" id="ipk" name="ipk" readonly value="<?= $ipk; ?>">
+                            <input type="number" class="form-control" id="ipk" name="ipk" readonly>
                         </div>
                     </div>
                     <div class="mb-3 row">
                         <label for="no_hp" class="col-sm-2 col-form-label">Beasiswa</label>
                         <div class="col-sm-10">
-                        <select class="form-select" aria-label="Default select example" name="beasiswa" id="beasiswa" <?php echo $disableInputs; ?>>
+                        <select class="form-select" aria-label="Default select example" name="beasiswa" id="inputBeasiswa" <?= setDisable($ipk); ?>>
                             <option value="Akademik">Akademik</option>
-                            <option value="Nonakademik">Nonakademik</option>
+                            <option value="Non-Akademik">Non-Akademik</option>
                         </select>
                         </div>
                     </div>
                     <div class="mb-3 row">
                         <label for="berkas" class="col-sm-2 form-label">Berkas</label>
                         <div class="col-sm-10">
-                            <input type="file" class="form-control" name="berkas" id="berkas" required oninvalid="setCustomValidity('Berkas tidak boleh kosong!!')" oninput="setCustomValidity('')" <?php echo $disableInputs; ?>>
+                            <input type="file" class="form-control" name="berkas" id="inputBerkas" required oninvalid="setCustomValidity('Berkas tidak boleh kosong!!')" oninput="setCustomValidity('')" <?= setDisable($ipk); ?>>
                         </div>
                     </div>
                    
         
                     <div class="mb-3 row mt-5">
                         <div class="col">
-                            <button type="submit" name="daftar" class="btn btn-primary" <?php echo $disableInputs; ?>>Daftar</button>
+                            <button type="submit" id="tombolDaftar" name="daftar" class="btn btn-primary" <?= setDisable($ipk); ?>>Daftar</button>
                             <a href="index.php" type="button" class="btn btn-danger">Batal</a>
                         </div>
                     </div>
                 </form>
             </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="warningModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Warning</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Maaf Email anda tidak teridentifikasi</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+            </div>
+            </div>
+        </div>
+        </div>
+
+
         </div>
     </div>
     <!-- end form pendaftaran -->
@@ -157,6 +163,39 @@ if (isDisabled($ipk)) {
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <script src="js/jquery.js"></script>
+    <script>
+        $( document ).ready(function(){
+    
+    $("#email").change(function(){
+        var email = $("#email").val();
+
+        if(email == "adi@gmail.com"){
+            //$("#nama").val("Adi Kaswandi");
+            $("#ipk").val("3.4");
+            $("#tombolDaftar").prop("disabled", false);
+            $("#inputBerkas").prop("disabled", false);
+            $("#inputBeasiswa").prop("disabled", false);
+
+
+        }else if(email == "asep@gmail.com") {
+            //$("#nama").val("Asep Sunandar");
+            $("#ipk").val("2.4");
+            $("#tombolDaftar").prop('disabled', true);
+            $("#inputBerkas").prop("disabled", true);
+            $("#inputBeasiswa").prop("disabled", true);
+
+        } else {
+            $("#warningModal").modal("show");
+            $("#tombolDaftar").prop('disabled', true);
+        }
+    })
+
+});
+
+    </script>
+    
 
   </body>
 </html>

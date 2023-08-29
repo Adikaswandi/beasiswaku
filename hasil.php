@@ -22,11 +22,21 @@
             background-color: lightblue;
             border-radius: 20px;
         }
+        /* Gaya canvas grafik */
+        #pendaftarChart {
+            max-width: 400px;
+            margin: 0 auto;
+            display: block;
+        }
 
         footer {
             margin-top: 300px;
         }
     </style>
+
+    <!-- chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <title>Hasil</title>
   </head>
   <body>
@@ -91,6 +101,51 @@
         </table>
     </div>
     <!-- end table -->
+
+    <canvas id="pendaftarChart" height="300"></canvas>
+
+
+    <script>
+    // Dapatkan data dari kode PHP
+    <?php
+        $akademikCount = 0;
+        $nonAkademikCount = 0;
+
+        $sql = mysqli_query($conn, $query);
+
+        while ($result = mysqli_fetch_assoc($sql)) {
+            if ($result['beasiswa'] == 'Akademik') {
+                $akademikCount++;
+            } else if ($result['beasiswa'] == 'Non-Akademik') {
+                $nonAkademikCount++;
+            }
+        }
+    ?>
+
+    // Kode Chart.js
+    var ctx = document.getElementById('pendaftarChart').getContext('2d');
+    var pendaftarChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Akademik', 'Non-Akademik'],
+            datasets: [{
+                label: 'Jumlah Pendaftar',
+                data: [<?= $akademikCount; ?>, <?= $nonAkademikCount; ?>],
+                backgroundColor: ['blue', 'orange'],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    stepSize: 1
+                }
+            }
+        }
+    });
+</script>
+
 
     <footer>
         <div class="row text-center p-4 bg-light">
