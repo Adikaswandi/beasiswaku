@@ -132,7 +132,7 @@ include 'functions.php';
                 </form>
             </div>
 
-        <!-- Modal -->
+        <!-- pop up email tidak diketahui -->
         <div class="modal fade" id="warningModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -149,6 +149,7 @@ include 'functions.php';
             </div>
         </div>
         </div>
+        <!-- end pop up -->
 
 
         </div>
@@ -166,35 +167,33 @@ include 'functions.php';
 
     <script src="js/jquery.js"></script>
     <script>
-        $( document ).ready(function(){
-    
-    $("#email").change(function(){
-        var email = $("#email").val();
+        $(document).ready(function() {
+            //respon saat isi elemen dengan id email
+            $("#email").change(function() {
+                var email = $("#email").val(); // Mengambil nilai email dari elemen input dengan id "email"
 
-        if(email == "adi@gmail.com"){
-            //$("#nama").val("Adi Kaswandi");
-            $("#ipk").val("3.4");
-            $("#tombolDaftar").prop("disabled", false);
-            $("#inputBerkas").prop("disabled", false);
-            $("#inputBeasiswa").prop("disabled", false);
+                if (email == "adi@gmail.com") {
+                    // Mengatur nilai dan perilaku elemen-elemen lain berdasarkan email
+                    $("#ipk").val("3.4");  // Mengatur nilai IPK pada input dengan id "ipk"
+                    $("#tombolDaftar").prop("disabled", false);  // Mengaktifkan tombol "Daftar"
+                    $("#inputBerkas").prop("disabled", false);   // Mengaktifkan input berkas
+                    $("#inputBeasiswa").prop("disabled", false);  // Mengaktifkan input beasiswa
 
+                } else if (email == "asep@gmail.com") {
+                    $("#ipk").val("2.4"); 
+                    $("#tombolDaftar").prop("disabled", true);
+                    $("#inputBerkas").prop("disabled", true);
+                    $("#inputBeasiswa").prop("disabled", true);
 
-        }else if(email == "asep@gmail.com") {
-            //$("#nama").val("Asep Sunandar");
-            $("#ipk").val("2.4");
-            $("#tombolDaftar").prop('disabled', true);
-            $("#inputBerkas").prop("disabled", true);
-            $("#inputBeasiswa").prop("disabled", true);
-
-        } else {
-            $("#warningModal").modal("show");
-            $("#tombolDaftar").prop('disabled', true);
-        }
-    })
-
-});
-
+                } else {
+                    // Jika email tidak cocok dengan kondisi di atas
+                    $("#warningModal").modal("show");  // Menampilkan modal peringatan
+                    $("#tombolDaftar").prop("disabled", true);  // Menonaktifkan tombol "Daftar"
+                }
+            });
+        });
     </script>
+
     
 
   </body>

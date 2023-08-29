@@ -22,6 +22,7 @@
             background-color: lightblue;
             border-radius: 20px;
         }
+        
         /* Gaya canvas grafik */
         #pendaftarChart {
             max-width: 400px;
@@ -106,45 +107,46 @@
 
 
     <script>
-    // Dapatkan data dari kode PHP
+    // mendapatkan data dari kode PHP untuk jumlah pendaftar beasiswa akademik dan non-akademik
     <?php
-        $akademikCount = 0;
-        $nonAkademikCount = 0;
+        $akademikCount = 0;          // Inisialisasi jumlah pendaftar beasiswa akademik
+        $nonAkademikCount = 0;       // Inisialisasi jumlah pendaftar beasiswa non-akademik
 
-        $sql = mysqli_query($conn, $query);
+        $sql = mysqli_query($conn, $query);   // Eksekusi query SQL untuk mendapatkan data dari database
 
         while ($result = mysqli_fetch_assoc($sql)) {
             if ($result['beasiswa'] == 'Akademik') {
-                $akademikCount++;
+                $akademikCount++;       // Hitung jumlah pendaftar beasiswa akademik
             } else if ($result['beasiswa'] == 'Non-Akademik') {
-                $nonAkademikCount++;
+                $nonAkademikCount++;    // Hitung jumlah pendaftar beasiswa non-akademik
             }
         }
     ?>
 
-    // Kode Chart.js
+    // Kode Chart.js untuk membuat grafik batang
     var ctx = document.getElementById('pendaftarChart').getContext('2d');
     var pendaftarChart = new Chart(ctx, {
-        type: 'bar',
+        type: 'bar',                // Jenis grafik adalah grafik batang
         data: {
-            labels: ['Akademik', 'Non-Akademik'],
+            labels: ['Akademik', 'Non-Akademik'],   // Label sumbu x (horizontal) dalam grafik
             datasets: [{
-                label: 'Jumlah Pendaftar',
-                data: [<?= $akademikCount; ?>, <?= $nonAkademikCount; ?>],
-                backgroundColor: ['blue', 'orange'],
-                borderWidth: 1
+                label: 'Jumlah Pendaftar',          // Label untuk dataset
+                data: [<?= $akademikCount; ?>, <?= $nonAkademikCount; ?>],  // Data jumlah pendaftar
+                backgroundColor: ['blue', 'orange'],  // Warna latar belakang batang
+                borderWidth: 1                         // Lebar garis batang
             }]
         },
         options: {
             scales: {
                 y: {
-                    beginAtZero: true,
-                    stepSize: 1
+                    beginAtZero: true,   // Mulai sumbu y dari 0
+                    stepSize: 1          // Langkah ukuran sumbu y
                 }
             }
         }
     });
-</script>
+    </script>
+
 
 
     <footer>
